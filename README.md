@@ -1,4 +1,4 @@
-## React TS with Axios
+# React TS with Axios
 
 The main goal of this side project is to learn about Axios in depth.
 
