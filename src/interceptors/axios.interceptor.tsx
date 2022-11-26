@@ -1,4 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { getValidationError } from '../utilities';
+import { SnackbarUtilities } from '../utilities/snackbar-manager';
 
 export const AxiosInterceptor = () => {
   const updateHeaders = (request: AxiosRequestConfig) => {
@@ -22,7 +24,7 @@ export const AxiosInterceptor = () => {
       return response;
     },
     (error: AxiosError) => {
-      console.log('error', error);
+      SnackbarUtilities.error(getValidationError(error.code));
       return Promise.reject(error);
     },
   );

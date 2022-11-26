@@ -3,6 +3,8 @@ import reactLogo from './assets/react.svg';
 import './App.css';
 import { TestingService } from './services/testing.service';
 import { RickAndMortyCharacter } from './interfaces';
+import { SnackbarUtilitiesConfigurator } from './utilities';
+import { SnackbarProvider } from 'notistack';
 
 function App() {
   const [morty, setMorty] = useState<RickAndMortyCharacter>({} as any);
@@ -11,16 +13,16 @@ function App() {
     const { data } = await TestingService();
     setMorty(data);
   };
-
   useEffect(() => {
-    try {
-      fetchMorty();
-    } catch (error) {
-      console.log(error);
-    }
+    fetchMorty();
   }, []);
 
-  return <div className="App">{JSON.stringify(morty)}</div>;
+  return (
+    <SnackbarProvider>
+      <SnackbarUtilitiesConfigurator />
+      <div className="App">{JSON.stringify(morty)}</div>;
+    </SnackbarProvider>
+  );
 }
 
 export default App;
