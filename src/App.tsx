@@ -15,7 +15,9 @@ function App() {
   useEffect(() => {
     try {
       fetchMorty();
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   return <div className="App">{JSON.stringify(morty)}</div>;
